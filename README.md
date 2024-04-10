@@ -7,3 +7,6 @@ Aqui podras encontrar los apuntes, notas, scripts, wirte-ups y documentacion cre
 Sientete libre, miembro o no de la comunidad de clonar y utilizar lo que necesites.
 
 Contactamente si estas interesado en ser miembro.
+
+
+awd
