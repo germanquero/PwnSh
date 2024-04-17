@@ -44,6 +44,7 @@ Se le pueden especificar varios directorios uno detras del otro y listara el con
 ```shell
 ls -lah --color direcotrio/
 ```
+*(Si te mola como se ve esto, te recomiendo* lsd *, un paquete practicamente igual a ls con* -h --color *por defecto y un paquete de iconos bastante chulo)*
 
 #### PWD
 Se ejecuta de la siguiente manera:
@@ -115,5 +116,27 @@ Funciona exactamente igual que mv solo que copia en lugar de mover el archivo.
 cp -i archivo ruta/
 ```
 
+#### CAT
+Se ejecuta de la siguiente manera:
+```shell
+cat archivo
+```
+Muestra el contenido del archivo o archivos especificados.
+
+Con -n muestra el numero de linea.
 
 
+#### LESS
+Se ejecuta de la siguiente manera:
+```shell
+less archivo
+```
+Muestra el contenido del archivo especificado dentro de un entorno con scroll.
+
+Se sale con la Q o Esc.
+Tiene mas controles y comandos de busqueda muy similares a vi.
+
+*(Si te gustaria que tuviera sintaxis, colores, y una apariencia mejor prueba *bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)
+
+
+### Gestion de Procesos
