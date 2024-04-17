@@ -3,7 +3,7 @@
 -----
 
 ## Introduccion
-La Unix Shell Aparecio en 1971 desarollada por Ken Thompson. Desde entonces es la base sobre la que reside la gran mayoria del software.
+La Unix Shell aparecio en 1971 desarollada por Ken Thompson. Desde entonces es la base sobre la que se ha construido la gran mayoria del software.
 
 Es muy util aprender a utilizar la shell de manera eficiente, ya que es donde pasamos la mayoria de nuestro tiempo como pentesters, analistas, desarolladores o entusiastas de la ciberseguridad y la tecnologia.
 
@@ -23,7 +23,7 @@ Por defecto (si no se especifica directorio) cd toma por defecto "~" (directorio
 Los subdirectorios se pueden anidar: directorio/subdirectorio/subsubdirectorio/etc/
 
 Si quisieramos movernos al directorio padre habria que hacer cd a "..".
-Y funciona con el anidamiento: ../../../ (tres directorios mas atras).
+Y funciona con el anidamiento: ../../../ (en este caso: tres directorios mas atras).
 
 Para volver al ultimo directorio visitado se puede hacer cd a "-".
 
