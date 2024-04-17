@@ -11,6 +11,7 @@ Un conocimiento definiciente sobre el uso de la shell puede llevar a la falsa cr
 
 Por todos estos motivos en PwnSh hemos decidido comenzar por aqui, explorando la shell y profundizando en el extenso mundo del Bash.
 
+
 ## Comandos basicos
 ### Manejo de ficheros
 #### CD
@@ -44,7 +45,9 @@ Se le pueden especificar varios directorios uno detras del otro y listara el con
 ```shell
 ls -lah --color direcotrio/
 ```
+
 *(Si te mola como se ve esto, te recomiendo* lsd *, un paquete practicamente igual a ls con* -h --color *por defecto y un paquete de iconos bastante chulo)*
+*(Tambien te recomiendo* tree *, un paquete que muestra directorios y archivos en formato arbol, muy util para visualizar)*
 
 #### PWD
 Se ejecuta de la siguiente manera:
@@ -78,6 +81,7 @@ Elimina el archivo o archivos especificados
 **Flags:**
 - r : modo recursivo (al especificarle un directorio elimina recursivamente todo su contenido si el directorio en si)
 - f : modo forzoso (elimina cualquier cosa sin solicitar confirmacion)
+- i : modo interactivo (te pregunta fichero a fichero si quieres eliminarlo)
 
 Tecnicamente esto borra lo que sea siempre y cuando tengas permisos para ello:
 ```shell
@@ -90,7 +94,6 @@ Se ejecuta de la siguiente manera:
 rmdir directorio
 ```
 Basicamente es rm para directorios. Se diferencia de rm -r en que no es recursivo. Es decir, solo elimina directorios vacios. Es mas seguro para tratar con ficheros importantes.
-
 
 #### MV
 Se ejecuta de la siguiente manera:
@@ -125,7 +128,6 @@ Muestra el contenido del archivo o archivos especificados.
 
 Con -n muestra el numero de linea.
 
-
 #### LESS
 Se ejecuta de la siguiente manera:
 ```shell
@@ -134,6 +136,7 @@ less archivo
 Muestra el contenido del archivo especificado dentro de un entorno con scroll.
 
 Se sale con la Q o Esc.
+Con / puedes buscar.
 Tiene mas controles y comandos de busqueda muy similares a vi.
 
 *(Si te gustaria que tuviera sintaxis, colores, y una apariencia mejor prueba *bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)
