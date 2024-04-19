@@ -172,7 +172,7 @@ Por dejecto muestra todos los procesos.
 - p PID,PID,PID, ... : filtra por PIDs
 
 Interactividad (pulsando teclas en ejecucion):
-- k : mandar señal kill, aparece un prompt donde introducir un PID
+- k : mandar señal kill, aparece un prompt donde introducir un PID y el tipo de señal que enviar (9 para softkill, 15 para hardkill)
 - m : mostrar la memoria de forma distinta o no mostrarla directamente.
 - M : ordenar los procesos por memoria
 - n : definir un numero maximo de procesos que mostrar 
@@ -182,5 +182,15 @@ Interactividad (pulsando teclas en ejecucion):
 - P : ordenar por uso de cpu
 
 *(Si te gustaria que tuviera mejor interantividad y apariencia prueba *htop*)
+
+#### KILL
+Se ejecuta de la siguiente manera:
+```shell
+kill PID
+```
+Basicamente mata el proceso especificado.
+
+Se puede, igual que en top, especificar el tipo de señal enviada con -9 o -15. Puedes ver todas las señales permitidas con -l.
+
 
 
