@@ -139,7 +139,48 @@ Se sale con la Q o Esc.
 Con / puedes buscar.
 Tiene mas controles y comandos de busqueda muy similares a vi.
 
-*(Si te gustaria que tuviera sintaxis, colores, y una apariencia mejor prueba *bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)
-
+*(Si te gustaria que tuviera sintaxis, colores y una apariencia mejor prueba *bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)
 
 ### Gestion de Procesos
+#### PS
+Se ejecuta de la siguiente manera:
+```shell
+ps
+```
+Por defecto muestra los procesos del usuario que lo ejecuta.
+
+**Flags:**
+- e : muestra procesos de todos los usuarios.
+- f : muestra los procesos con mas detalle.
+- u usuario : muestra los procesos del usuario especificdo.
+
+**Ejemplo:**
+```shell
+ps -fu root
+```
+
+#### TOP
+Se ejecuta de la siguiente manera:
+```shell
+top
+```
+Por dejecto muestra todos los procesos.
+
+**Flags:**
+- d N : especifica una tasa de refresco en segundos.
+- u usuario : muestra los procesos del usuario especificado.
+- p PID,PID,PID, ... : filtra por PIDs
+
+Interactividad (pulsando teclas en ejecucion):
+- k : mandar señal kill, aparece un prompt donde introducir un PID
+- m : mostrar la memoria de forma distinta o no mostrarla directamente.
+- M : ordenar los procesos por memoria
+- n : definir un numero maximo de procesos que mostrar 
+- N : ordenar por PID
+- t : mostrar el uso de CPU y el numero de tasks de formas distintas o no.
+- T : ordenar por tiempo
+- P : ordenar por uso de cpu
+
+*(Si te gustaria que tuviera mejor interantividad y apariencia prueba *htop*)
+
+
