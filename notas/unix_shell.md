@@ -46,7 +46,8 @@ Se le pueden especificar varios directorios uno detras del otro y listara el con
 ls -lah --color direcotrio/
 ```
 
-*(Si te mola como se ve esto, te recomiendo* lsd *, un paquete practicamente igual a ls con* -h --color *por defecto y un paquete de iconos bastante chulo)*
+*(Si te gusta como se ve esto, te recomiendo* lsd *, un paquete practicamente igual a ls con* -h --color *por defecto y un paquete de iconos bastante chulo)*
+
 *(Tambien te recomiendo* tree *, un paquete que muestra directorios y archivos en formato arbol, muy util para visualizar)*
 
 #### PWD
