@@ -530,3 +530,5 @@ Entonces:
 
 En resumen estamos enviando todas las entradas y salidas por el dispositivo /dev/tcp/ip
 
+## Historial
+
