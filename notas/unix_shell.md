@@ -184,7 +184,7 @@ Interactividad (pulsando teclas en ejecucion):
 - T : ordenar por tiempo
 - P : ordenar por uso de cpu
 
-*(Si te gustaria que tuviera mejor interantividad y apariencia prueba *htop*)
+*(Si te gustaria que tuviera mejor interantividad y apariencia prueba* htop*)*
 
 #### KILL
 Se ejecuta de la siguiente manera:
@@ -283,7 +283,7 @@ Existen multitud de **flags** para especificar datos sobre el usuario:
 sudo useradd nuevo -m /user/bin/zsh -G wheel -c "nuevo usuario en el sistema" -u 1234
 ```
 
-#### USERDEL
+#### USERD- EL
 Se ejecuta de la siguiente manera:
 ```shell
 userdel usuario
