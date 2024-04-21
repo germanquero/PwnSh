@@ -140,7 +140,9 @@ Se sale con la Q o Esc.
 Con / puedes buscar.
 Tiene mas controles y comandos de busqueda muy similares a vi.
 
-*(Si te gustaria que tuviera sintaxis, colores y una apariencia mejor prueba *bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)
+Viene de otro comando llamado more, que solo podia hacer scroll hacia abajo
+
+*(Si te gustaria que tuviera sintaxis, colores y una apariencia mejor prueba *bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)*
 
 ### Gestion de Procesos
 #### PS
@@ -527,5 +529,4 @@ Entonces:
 - redirige la entrada estandard hacia el mismo destino que la salida estandard.
 
 En resumen estamos enviando todas las entradas y salidas por el dispositivo /dev/tcp/ip
-
 
