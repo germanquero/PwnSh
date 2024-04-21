@@ -142,7 +142,7 @@ Tiene mas controles y comandos de busqueda muy similares a vi.
 
 Viene de otro comando llamado more, que solo podia hacer scroll hacia abajo
 
-*(Si te gustaria que tuviera sintaxis, colores y una apariencia mejor prueba *bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)*
+*(Si te gustaria que tuviera sintaxis, colores y una apariencia mejor prueba* bat *, es basicamente less y cat integrados con sintaxis y numeros de linea)*
 
 ### Gestion de Procesos
 #### PS
