@@ -271,12 +271,12 @@ useradd nombre
 
 Añade un usuario con el nombre de usuario indicado.
 Existen multitud de **flags** para especificar datos sobre el usuario:
-- -m : crea el directorio /home/usuario lo establece como el $HOME.
-- -s shell : permite especificar la shell.
-- -G grupo,grupo,grupo : permite especificar los grupos a los que pertenece.
-- -c descripcion : permite añadir una descripcion.
-- -u UID : permite especificar el UID
-- -d dir : especifica el $HOME si no se ha utilizado -m.
+- m : crea el directorio /home/usuario lo establece como el $HOME.
+- s shell : permite especificar la shell.
+- G grupo,grupo,grupo : permite especificar los grupos a los que pertenece.
+- c descripcion : permite añadir una descripcion.
+- u UID : permite especificar el UID
+- d dir : especifica el $HOME si no se ha utilizado -m.
 
 *Ejemplo:*
 ```shell
