@@ -531,4 +531,255 @@ Entonces:
 En resumen estamos enviando todas las entradas y salidas por el dispositivo /dev/tcp/ip
 
 ## Historial
+### Comandos anteriores
+#### History
+Se ejecuta de la siguiente manera:
+```shell
+history
+```
+Por defecto muestra los comandos mas recientes.
+Se le pude especificar un tipo:
+```shell
+history N
+```
 
+Esto mostrara los comandos hasta desde la entrada numero N hasta la actual.
+Tambien se puede añadir un N negativo y mostrara los ultimos N comandos.
+
+#### !!
+!! representa el comando inmediatamente anterior.
+Muy util para corregir o añadir cosas o cuando un comando requiere sudo y te enteras a posteriori:
+```shell
+sudo !!
+```
+
+Se pueden aplicar sustituciones rapidas de la siguiente forma:
+```shell
+!!:s/patron/sustituto/
+```
+
+Hay mas formas de realizar estas sustituciones, se parece mucho a sed, pero no creo que sea necesario realizar sustituciones complejas de esta forma. 
+
+#### !N
+!N representa el comando numero N en el historial.
+Al igual que al comando history se le puede pasar numeros negativos para hacer el comando de hace N comandos en lugar de utilizar entradas absolutas.
+
+#### :p
+De forma similar a como empezabamos las sustituciones, podemos hacer que el comando, en lugar de ejecutarse, se imprima por pantalla y se convierta en la ultima entrada del historial.
+```shell
+!!:p
+```
+
+Esto puede ser muy util si no estamos seguros de a que comando estamos llamando y no queremos ejecutar nada sin querer, o, por ejemplo, para acceder rapido a el mas adelante.
+
+#### !(?)string(?)
+!string representa el ultimo comando que **empiece** por el string indicado.
+
+Al añadir las interrogaciones(!?string?) indicamos el primero comando que **contenga** el string.
+Si se omite la segunda interrogacion (!?string) se indica que comando debe **terminar** por el string
+
+#### Ctrl+R
+Entras en el modo de busqueda inversa, basicamente busca en el historial lo que vayas escribiendo y con tabulador, si es el resultado correcto puedes completarlo.
+
+### Parametros Anteriores
+#### $!
+Contiene el UID del ultimo comando lanzado.
+Util para matar un proceso si se ha cometido errores al lanzarlo, por ejemplo
+
+```shell
+comando
+kill $!
+```
+
+#### !\*
+Representa todos los argumentos utilizados en el comando anterior como un string, incluyendo las redirecciones y su puntacion.
+
+#### !\^
+Rrepresenta el primer argumento utilizado en el comando anteiror como un string
+
+#### $_ y !$
+Son dos formas de representar el ultimo argumento utilizado.
+
+Uno es una funcionalidad de bash y el otro una funcionalidad del historial, lo cual significa que manejan distinto cual es el ultimo comando y argumento.
+
+$_ no entiende de redirecciones, es decir, tomara el ultimo comando antes de la redireccion. Al concatenar varios comandos, al ser una funcionalidad de bash, no del historial, tomara el comando anterior en la cadena como el ultimo comando
+
+!$ si entiende de redirecciones pero no conoce el comando que estas ejecutando, solo el historial. Esto quiere decir que concatenes los comandos que concatenes, !$ siempre va a interpretar la entrada anterior en el historial.
+
+*Ejemplos:*
+```shell
+echo "hola" > fichero.txt
+echo $_ (hola)
+echo "hola" > fichero.txt
+cat !$ (contenido de fichero.txt)
+echo "ejemplo" > $_
+(crea un arhivo llamado ejemplo de contenido ejemplo)
+echo "ejemplo2" 
+echo "ejemplo1" && echo !$ (ejemplo2 ejemplo1)
+echo "ejemplo3"
+echo "ejemplo4" && echo $_ (ejemplo4 ejemplo4)
+```
+
+## Comandos avanzados
+La clave para maximizar el uso de la shell es el filtrado de la salida de los comandos.
+
+Hay comandos que otorgan salidas grandisimas, ficheros de log tremendamente largos e ilgeibles.
+
+Saber filtrar la salida de los comandos ahorra tiempo de scroll y busqueda manual y abre las puertas a muchas posibilidades de automatizacion.
+
+En mi opinion para trabajar comodamente con ello hay que conocer minimo:
+AWK, GREP, SED, SORT, CUT, UNIQ, TR, WC, HEAD y TAILS
+
+Tambien es util conocer find para mejorar la busqueda de ficheros
+
+En esta seccion sera imprescindible practicamente el uso de pipes.
+
+### Manejo del output
+#### AWK
+Awk es sin duda el mas potente y hablar de toda su funcionalidad mereceria sus propios apuntes y clase.
+
+Es practicamente un lenguaje de programacion que itera sobre cada linea de un fichero: tiene condicionales, variables, funciones, etc.
+
+Para lo que se suele utilizar es para el manejo de las filas de un archivo por columnas.
+
+Se ejecuta de la siguiente manera:
+```shell
+awk 'patron {accion} patro {accion} ...' fichero
+```
+
+Cuando la linea coincide con el patron, realiza la accion indicada con llaves detras y asi sucesivamente. Si se añade una accion sin patron previo sera el patron para cuando no coincide con ningun patron indicado.
+
+El patron se puede indicar con regex o utilizando las variables propias de AWK. Se puede utilizar END y BEGUIN para la primera y ultima linea
+
+Awk interpreta cada fila por columnas separadas el separador indicado (por defecto espacio) y atribuye a cada valor una variable. Las variables son representadas por $ y su numero de columna.
+
+Tamien tiene dos variables que recogen el numero de registro (linea) representado por NR y el numero de campos (cantidad de columnas) representado por NF
+
+Para indicar un separador distinto se puede utilizar el flag -F
+
+*Ejemplo:*
+```shell
+awk '/hola/ {print}' archivo.txt
+(imprime lineas que contienen hola)
+awk '{print $1} archivo.txt
+(imprime la primera columna de todas las filtas)
+awk '/hola/ {saludos+=1} END {print saludos}
+(imprime el numero de 'hola's encontrados)
+awk 'NF>3 {print $4}'
+(si la fila es mas larga que 3 columnas imprime la 4rta)
+```
+
+#### GREP
+Es un comando de busqueda dentro de ficheros.
+Se ejecuta de la siguiente manera:
+```shell
+grep opciones patron archivo
+```
+
+Las opciones mas populares y utiles son:
+- i : busqueda insensible a mayusculas y minusculas
+- r : aplica recursividad a directorios
+- v : busqueda inversa (muestra lineas que no coincidan)
+
+El patron se puede indicar por regex o strings.
+
+#### SED
+Es un comando para realizar transformaciones dentro de ficheros.
+Puede buscar y reemplazar, eliminar o añadir lineas y otras operaciones de edicion de texto.
+Se ejecuta de la siguiente manera:
+```shell
+sed opciones 'comanddo' archivo
+```
+
+Por defecto imprime la version modificada por consola, con -i indicamos que edite el fichero con las trasnformaciones que especifiquemos.
+Con -e se le pueden especificar mutiples comandos. Con -n podemos indicar que solo muestre las lineas donde ha aplicado el comando en lugar de todas.
+
+El comando se constituye de la siguiente manera:
+- Para busqueda y reemplazo: s/busqueda/reemplazo/
+- Para eliminar: /busqueda/d
+
+Por defecto la sistitucion solo aplica a la primera coincidencia dentro del la linea, con una g a final podemos hacer que aplique a todas las coincidebncias.
+
+Por defecto es sensible a mayusculas, podemos cambiarlo con una I al final.
+
+*Ejemplo:*
+```shell
+sed -i 's/palabra1/palabra2/gI' archivo.txt
+```
+#### SORT - UNIQ - HEAD - TAIL - TR- WC
+En trim defines 2  separadores y separa el contenido entre los primeros separadores y los separa con los segundos.
+*Ejemplo: Separar un texto por palabras en distintas lineas:*
+```shell
+cat archivo.txt | tr " " "\n"
+```
+
+Sort basicamente ordena, tiene flags -n para numericamente, -M que reconoce meses escritos : JAN < DEC, ..
+Pero los **flags** mas importantes son:
+- f : ignora las mayusculas.
+- d : modo dicionario, ignora las puntuaciones ¿?,.
+- r : cambia de mayor a menor a menor a mayor.
+- o {archivo} : guarda los resultados en un fichero.
+- u : agrupa los duplicados en unicos.
+
+*Por ejemplo: agrupar las palabras de un texto y ordenarlas de la z a la a:*
+```shell
+cat archivo.txt | tr " " "\n" | sort -fdru
+```
+
+Si la parte de unificar las palabras en iguales no funciona como esperas con sort -u, puedes utilizar uniq que otorga cierto grado de configuracion:
+- c : cuenta el numero de ocurrencia
+- d : solo printea las que tienen duplicadas
+- D : imprime todas las lineas duplicadas
+- i : ignora mayusculas
+- s {int} : permite saltarse los primeros n caracteres y ordenar en base a mas adelante
+- w {int} : comparar solo n caracteres
+
+*El ejemplo de antes pero con el numero de coincidencias y sin las palabras que solo aparecen una vez:*
+```shell
+cat archivo.txt | tr " " "\n" | sort -fdr | uniq -cid
+```
+
+Head y Tails permiten recortar la salida por arriba o por abajo respectivamente indicando:
+- c : numero de caracteres
+- n : numero de lineas
+
+*Ejemplo: las 15 primeras lineas del output anterior*
+```shell
+cat archivo.txt | tr " " "\n" | sort -fdr | unisq -cid | head -n 15
+```
+
+Con wc se pueden contar:
+- w : numero de palabras
+- l : numero de lineas
+- c : numero de bytes
+
+*Ejemplo: numero de palabtas del archivo*
+```shell
+cat archivo.txt | wc -w
+```
+
+#### FIND
+Es una herramiente presente en casi todos los sistemas unix y es una herramienta poderosisima, no para filtrar datos como las anteriores, si no para buscar archivos y directorios.
+
+Se utiliza asi:
+```shell
+find [flags] ruta/sobre/la/que/buscar [patrones de busqueda]
+```
+Flags:
+- -L : seguir a los enlaces simbolicos(accesos directos)
+- alguno mas de debuggin y eso
+Patrones:
+- -name {nombre} : busca archivos o directorios que coincidan por nombre
+- -iname {nombre} : igual pero sin ser sensible a mayusculas
+- -type {tipo} : tipo de archivo (los mas comunes son d (directorios) y f (ficheros))
+- -user {usuario} : pertenecientes al usuario especificado
+- -size {tamaño} : k para kilobytes, M para megabytes, se puede poner + o - delante para especificar mayor o menor que
+- -mtime {dias} : usa + y - como en size
+- muchas mas, mirar el man, de verdad que es potentisima
+
+*Ejemplo: Encontrar archivos de un usuario llamado paco en todo el sistema de hace menos de una semana mas grandes de 20k*
+```shell
+find /* -user paco -size +20k -mtime +7
+```
+
+Paquete recomendado: fzf

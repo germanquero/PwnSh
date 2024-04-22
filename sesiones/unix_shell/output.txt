@@ -1,0 +1,5 @@
+stdout::Esto es un output normal
+stderr::Esto es un error
+stdout::Ingrese input:
+stdout::Se ingreso: Esto es un input desde fichero::stdin
+stderr:Cerrando...
