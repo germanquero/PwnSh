@@ -2,38 +2,6 @@
 #### PwnSh: Sesion 1.2
 -----
 
-| Comandos básicos | Gestión de procesos | Gestión de usuarios | Permisos |
-| --- | --- | --- | --- |
-| CD | PS | WHOAMI y ID | Leer permisos |
-| LS | TOP | SU | Cambiar permisos |
-| PWD | KILL | SUDO | CHMOD |
-| TOUCH | KILLALL | USERADD |
-| MKDIR | PGREP | USERDEL |
-| RM | PKILL | PASSWD |
-| RMDIR |  | USERMOD |
-| MV |  | GROUPS |
-| CP |  | GROUPADD, GROUPDEL |
-| CAT |  | NEWGRP |
-| LESS |  |  |
-
-| Gestión del flujo y Redirección de datos | Historial | Comandos avanzados |
-| --- | --- | --- |
-| && | Comandos anteriores | AWK |
-| & | History | GREP |
-| CTRL+Z: | !! | SED |
-| FG | !N | SORT - UNIQ - HEAD - TAIL - TR- WC |
-| BG | :p | FIND |
-| PIPES | !(?)string(?)string(?)) |
-| Entrada Estandard (stdin)) | Ctrl+R |
-| Salida Estandard (stdout)) | Parámetros Anteriores |
-| Salida de Error (stderr)) | $! |
-| Combinar las Salidas | !\* |
-| Entender las redirecciones compejas | !\^ |
-| Dispositivos especiales | $_ y !$ |
-| Redireccion de Reverse Shell |
-
-
-
 ## Introduccion
 La Unix Shell aparecio en 1971 desarollada por Ken Thompson. Desde entonces es la base sobre la que se ha construido la gran mayoria del software.
 
