@@ -3,58 +3,36 @@
 -----
 
 
-| Comandos básicos | Gestión de procesos |
-| --- | --- |
-| CD | PS |
-| LS | TOP |
-| PWD | KILL |
-| TOUCH | KILLALL |
-| MKDIR | PGREP |
-| RM | PKILL |
-| RMDIR |  |
-| MV |  |
-| CP |  |
-| CAT |  |
-| LESS |  |
 
-| Gestión de usuarios | Permisos |
-| --- | --- |
-| WHOAMI y ID | Leer permisos |
-| SU | Cambiar permisos |
-| SUDO | CHMOD |
-| USERADD |  |
-| USERDEL |  |
-| PASSWD |  |
-| USERMOD |  |
-| GROUPS |  |
-| GROUPADD, GROUPDEL |  |
-| NEWGRP |  |
+| Comandos básicos | Gestión de procesos | Gestión de usuarios | Permisos |
+| --- | --- | --- | --- |
+| CD | PS | WHOAMI y ID | Leer permisos |
+| LS | TOP | SU | Cambiar permisos |
+| PWD | KILL | SUDO | CHMOD |
+| TOUCH | KILLALL | USERADD |  |
+| MKDIR | PGREP | USERDEL |  |
+| RM | PKILL | PASSWD |  |
+| RMDIR |  | USERMOD |  |
+| MV |  | GROUPS |  |
+| CP |  | GROUPADD, GROUPDEL |  |
+| CAT |  | NEWGRP |  |
+| LESS |  |  |  |
 
-| Gestión del flujo y Redirección de datos | Historial |
-| --- | --- |
-| && | Comandos anteriores |
-| & | History |
-| CTRL+Z: | !! |
-| FG | !N |
-| BG | :p |
-| PIPES | !(?)string(?)string(?)) |
-| Entrada Estandard (stdin)) | Ctrl+R |
-| Salida Estandard (stdout)) | Parámetros Anteriores |
-| Salida de Error (stderr)) | $! |
-| Combinar las Salidas | !\* |
-| Entender las redirecciones compejas | !\^ |
-| Dispositivos especiales | $_ y !$ |
-| Redireccion de Reverse Shell |  |
-
-| Comandos avanzados |  |
-| --- | --- |
-| AWK |  |
-| GREP |  |
-| SED |  |
-| SORT - UNIQ - HEAD - TAIL - TR- WC |  |
-| FIND |  |
-
-
+| Gestión del flujo y Redirección de datos | Historial | Comandos avanzados |  |
+| --- | --- | --- | --- |
+| && | Comandos anteriores | AWK |  |
+| & | History | GREP |  |
+| CTRL+Z: | !! | SED |  |
+| FG | !N | SORT - UNIQ - HEAD - TAIL - TR- WC |  |
+| BG | :p | FIND |  |
+| PIPES | !(?)string(?)string(?)) |  |  |
+| Entrada Estandard (stdin)) | Ctrl+R |  |  |
+| Salida Estandard (stdout)) | Parámetros Anteriores |  |  |
+| Salida de Error (stderr)) | $! |  |  |
+| Combinar las Salidas | !\* |  |  |
+| Entender las redirecciones compejas | !\^ |  |  |
+| Dispositivos especiales | $_ y !$ |  |  |
+| Redireccion de Reverse Shell |  |  |  |
 
 
 ## Introduccion
