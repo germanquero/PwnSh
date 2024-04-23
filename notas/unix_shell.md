@@ -2,6 +2,61 @@
 #### PwnSh: Sesion 1.2
 -----
 
+
+| Comandos básicos | Gestión de procesos |
+| --- | --- |
+| CD | PS |
+| LS | TOP |
+| PWD | KILL |
+| TOUCH | KILLALL |
+| MKDIR | PGREP |
+| RM | PKILL |
+| RMDIR |  |
+| MV |  |
+| CP |  |
+| CAT |  |
+| LESS |  |
+
+| Gestión de usuarios | Permisos |
+| --- | --- |
+| WHOAMI y ID | Leer permisos |
+| SU | Cambiar permisos |
+| SUDO | CHMOD |
+| USERADD |  |
+| USERDEL |  |
+| PASSWD |  |
+| USERMOD |  |
+| GROUPS |  |
+| GROUPADD, GROUPDEL |  |
+| NEWGRP |  |
+
+| Gestión del flujo y Redirección de datos | Historial |
+| --- | --- |
+| && | Comandos anteriores |
+| & | History |
+| CTRL+Z: | !! |
+| FG | !N |
+| BG | :p |
+| PIPES | !(?)string(?)string(?)) |
+| Entrada Estandard (stdin)) | Ctrl+R |
+| Salida Estandard (stdout)) | Parámetros Anteriores |
+| Salida de Error (stderr)) | $! |
+| Combinar las Salidas | !\* |
+| Entender las redirecciones compejas | !\^ |
+| Dispositivos especiales | $_ y !$ |
+| Redireccion de Reverse Shell |  |
+
+| Comandos avanzados |  |
+| --- | --- |
+| AWK |  |
+| GREP |  |
+| SED |  |
+| SORT - UNIQ - HEAD - TAIL - TR- WC |  |
+| FIND |  |
+
+
+
+
 ## Introduccion
 La Unix Shell aparecio en 1971 desarollada por Ken Thompson. Desde entonces es la base sobre la que se ha construido la gran mayoria del software.
 
@@ -352,11 +407,53 @@ Esto se puede establecer con:
 gpasswd grupo
 ```
 
+## Permisos
+Los permisos son un factor clave a la hora del manejo de ficheros y la ejecucion de comandos. Es esencial saber leerlos y modificarlos con facilidad.
+
+### Leer permisos
+Cuando hacemos un ls -l podemos observar que aparece una ristra de caracteres que combinan rwx-.
+Realmente tambien puede aparecer d o l en el caracter de la izquiera del todo.
+
+Son 10 caracteres:
+- El primero representa el tipo de fichero: - para archivo, d para directorio, l para enlaces simbolicos.
+- Los siguietes 9 son 3 sets de 3 caracteres:
+    - Cada set representa de izquierda a derecha los permisos del propietario, del grupo propietario y del resto de usuarios.
+    - Cada set se compone de 3 caracteres, cada caracter puere ser - o rwx segun le corresponda: siendo --- ningun permiso y rwx rodos los permisos
+        - r significa read (lectura)
+        - w significa write (escritura)
+        - x significa execution (ejecucion)
+
+Los permisos tambien pueden venir representados por un numero de tres cifras. Cada cifra, al igual que los sets de caracteres, representan los permisos del propietario, grupo y el resto respectivamente.
+El valor de cada cifra se calcula en base a:
+- Lectura: 4
+- Escritura: 2
+- Ejecution: 1
+
+*Por tanto ningun permiso es 0, todos los permisos es 7 y y por ejemplo 6 seria lectura y escritura.*
+
+## Cambiar permisos
+### CHMOD
+Se ejecuta de la siguiente manera:
+```shell
+chmod nuevos_permisos fichero
+```
+
+Los nuevos permisos se pueden indicar de forma octal o numerica o verbose.
+Para formalizar la verbose se utiliza +, - e = y se representa al usuario por u al grupo por g y al resto por o.
+
+*Por ejemplo:*
+```shell
+chmod 777 archivo
+chmod u=rwx,g=rwx,o=rwx archivo
+
+chmod 762 archivo
+chmod u+rwx,g=rw,o-xw archivo
+```
+
 ## Gestion del flujo y Redireccion de datos
 Controlar el flujo de los procesos, su input y output, y la comunicacion entre ellos y la automatizacion de todo esto es lo que puede hacer mucho mas eficaz y eficiente nuestra experiencia dentro de una shell.
 
 Por ello vamos a ver como se controla el flujo, luego como se redireccionan los datos y por ultimo algunos comandos y componentes especiales que facilitan el trabajo.
-
 
 ### Flujo de procesos
 #### &&
@@ -576,7 +673,6 @@ Esto puede ser muy util si no estamos seguros de a que comando estamos llamando 
 !string representa el ultimo comando que **empiece** por el string indicado.
 
 Al añadir las interrogaciones(!?string?) indicamos el primero comando que **contenga** el string.
-Si se omite la segunda interrogacion (!?string) se indica que comando debe **terminar** por el string
 
 #### Ctrl+R
 Entras en el modo de busqueda inversa, basicamente busca en el historial lo que vayas escribiendo y con tabulador, si es el resultado correcto puedes completarlo.
@@ -688,7 +784,7 @@ Es un comando para realizar transformaciones dentro de ficheros.
 Puede buscar y reemplazar, eliminar o añadir lineas y otras operaciones de edicion de texto.
 Se ejecuta de la siguiente manera:
 ```shell
-sed opciones 'comanddo' archivo
+sed opciones 'comando' archivo
 ```
 
 Por defecto imprime la version modificada por consola, con -i indicamos que edite el fichero con las trasnformaciones que especifiquemos.
@@ -783,3 +879,10 @@ find /* -user paco -size +20k -mtime +7
 ```
 
 Paquete recomendado: fzf
+
+## Conclusion
+Espero que hayas podido aprender algo sobre la terminal o aclarado posibles dudas.
+
+No dudes en hacer pullrequest con cualquier cosa que te gustaria ver corregida.
+
+Un saludo.
