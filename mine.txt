@@ -1,0 +1,56 @@
+
+Cuando estes con el flujo 
+
+ping fg bg & etc para demostrar cosas
+
+
+
+
+
+
+
+con la diferencia de $! y $_
+que harian:
+touch a.txt b.txt
+
+echo  "awd" > $_
+    Esto crea un archivo llamado awd y le introduce awd
+echo "awd" > !$
+    Esto introduce awd en b.txt
+
+
+
+
+
+
+
+Un ejemplo para terminar con el apartado de parametros:
+Supongamos que el contenido de text.txt es el siguiente:
+
+123 456
+123 678
+123 678
+123 456
+789 123
+
+Y que el ultimo comando es el siguiente:
+
+user@host:~$ echo "123" "456" >> text.txt
+
+Este comando va a introducir una linea con 123 456 al final de text.txt.
+¿Como podriamos hacer grep de cualquier fila que contenga 123 y 456?
+
+user@host:~$ grep !^ !$ | grep $_
+
+uso de grep:
+grep patron arhchivo
+cat archivo | grep patron
+
+
+
+
+
+
+
+Ejemplo de paquetes instalados con log de pacman
+awk '$3 ~ "led" {installed[$4] = 1} $3 ~"ved" {if(installed[$4] == 1) {delete instaled[$4]}} END {print "Paquetes instalados en el sistema: "; for(paquete in installed) {printf "%s ", paquete}print"\n\n"};
