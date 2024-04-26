@@ -1,5 +1,5 @@
 # Modulo: Introduction to the Academy
-## HTB
+## HTB Academy - Modulo Introductorio
 ---
 
 La academia de Hack The Box (HTB) se organiza en paths, modulos y secciones, que siguen esta jerarquia:
