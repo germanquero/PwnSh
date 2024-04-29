@@ -4,7 +4,7 @@ Youtube: https://youtu.be/Dojgyo1waLk
 
 -----
 
-## Índice
+## Indice
 - [Unix Shell](#unix-shell)
       - [PwnSh: Sesion 1.2](#pwnsh-sesion-12)
   - [Índice](#índice)
@@ -82,8 +82,6 @@ Youtube: https://youtu.be/Dojgyo1waLk
       - [FIND](#find)
   - [Conclusion](#conclusion)
 
-
-
 ## Introduccion
 La Unix Shell aparecio en 1971 desarollada por Ken Thompson. Desde entonces es la base sobre la que se ha construido la gran mayoria del software.
 
@@ -92,7 +90,6 @@ Es muy util aprender a utilizar la shell de manera eficiente, ya que es donde pa
 Un conocimiento definiciente sobre el uso de la shell puede llevar a la falsa creencia de que hay tareas imposibles o requieren scripts largos y complejos, cuando lo cierto es, que al igual que con python u otros lenguajes, la gran mayoria de cosas se pueden hacer en un *oneliner*.
 
 Por todos estos motivos en PwnSh hemos decidido comenzar por aqui, explorando la shell y profundizando en el extenso mundo del Bash.
-
 
 ## Comandos basicos
 ### Manejo de ficheros
@@ -201,7 +198,6 @@ Funciona exactamente igual que mv solo que copia en lugar de mover el archivo.
 ```shell
 cp -i archivo ruta/
 ```
-
 #### CAT
 Se ejecuta de la siguiente manera:
 ```shell
@@ -285,7 +281,6 @@ killall nombre
 
 Mata todos los procesos con el nombre especificado.
 Con -s N se puede especificar la señal que enviar como en los comandos anteriores. Se pueden listar las dispnibles con -l.
-
 
 #### PGREP
 Se ejecuta de la siguiente manera:
@@ -609,6 +604,7 @@ Y para añadir al final:
 ```shell
 comando 2>> salida.txt
 ```
+
 #### Combinar las Salidas
 Se puede representar de varias formas. La mas sencilla:
 ```shell
@@ -629,7 +625,6 @@ Existen 3 descriptores de fichero por defecto:
 - 2 : Salida de error (stderr)
 
 Cuando te encuentras redirecciones de tipo: N>&M,  lo que esta es redirigiendo la salida N al mismo lugar que la salida M, como puedes ver en el ejemplo de Combinar las Salidas.
-
 
 Tambien se pueden crear descriptores de ficheros propios para redirecciones mas complejas.
 
@@ -829,6 +824,7 @@ Por defecto es sensible a mayusculas, podemos cambiarlo con una I al final.
 ```shell
 sed -i 's/palabra1/palabra2/gI' archivo.txt
 ```
+
 #### SORT - UNIQ - HEAD - TAIL - TR- WC
 En trim defines 2  separadores y separa el contenido entre los primeros separadores y los separa con los segundos.
 *Ejemplo: Separar un texto por palabras en distintas lineas:*
@@ -910,6 +906,6 @@ Paquete recomendado: fzf
 ## Conclusion
 Espero que hayas podido aprender algo sobre la terminal o aclarado posibles dudas.
 
-No dudes en hacer pullrequest con cualquier cosa que te gustaria ver corregida.
+No dudes en hacer pull-request con cualquier cosa que te gustaria ver corregida.
 
 Un saludo.

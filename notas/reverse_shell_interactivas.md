@@ -1,8 +1,17 @@
-# Unix Shell
-#### PwnSh: Sesion 1.2
-Youtube: https://youtu.be/Dojgyo1waLk
+# Reverse Shell Interactivas (manejo de tty)
+#### PwnSh: Sesion 2.0
 
 -----
+
+## Indice
+- [Reverse Shell Interactivas (manejo de tty)](#reverse-shell-interactivas-manejo-de-tty)
+      - [PwnSh: Sesion 2.0](#pwnsh-sesion-20)
+  - [Introduccion](#introduccion)
+  - [Proceso:](#proceso)
+    - [Shell del Host:](#shell-del-host)
+    - [Shell Remota:](#shell-remota)
+    - [Adaptar la terminal:](#adaptar-la-terminal)
+  - [Conclusion](#conclusion)
 
 ## Introduccion 
 Cuando accedes a conexiones remotas, a menudo hay problemas de imcompatibilidad entre la terminal host y la remota que hacen que la terminal no funcina como esperamos.
@@ -15,8 +24,8 @@ Sin embargo hay ciertas cosas que se pueden probar, que no siempre van a asegura
 
 Antes de continuar, esto es un proceso que sin duda facilita algunos tipos de trabajo, vulnerabilidades y que nos hace la vida algo mas facil, sin embargo, dependiendo de lo que estemos tratando de hacer en la terminal, no recomiendo demasiado invertir el tiempo en realizar todo este proceso. Seguramente pierdas tiempo si no necesitas interactividad para nada en concreto (algunos comandos requieren interactividad) o es una backdoor o punto de acceso a un equipo que se vaya a reutilizar a menudo (ahí si recomiendo anotar la configuracion favorable a la interactividad).
 
-## Proceso:
-### Shell del Host:
+## Proceso
+### Shell del Host
 A parte de bash, existen muchos otros tipos de sell como zsh, ksh o csh, y tambien muchos emuladores de terminal. Esto hace que sea tarea complicada a veces para nuestra terminal, recibir un output y manejar un input de forma tan cruda como lo hacen ciertas reversas.
 
 A mi personalmente, sobretodo zsh+powerlevel10k, me encanta tener una shell customizada y lo recomiendo, pero a la hora de crear conexiones remotas, recomiendo siempre salir de ese entorno.
@@ -32,7 +41,7 @@ sh
 
 De esta forma tendriamos una terminal base de bash basica que probablemente sea más compatible con la terminal remota.
 
-### Shell Remota:
+### Shell Remota
 Esto no suele estar en tu mano, puedes utilizar la conexion que tengas o la reversa que hayas conseguido introducir y ejecutar.
 
 Sin embargo al acceder se pueden hacer ciertas cosas para asegurarte de estar dentro de una terminal bash.
@@ -56,7 +65,7 @@ os.execute('/bin/bash')
 :set shell=/bin/bash:shell
 ```
 
-### Adaptar la terminal:
+### Adaptar la terminal
 Como hemos vimos en las sesiones de unix-shell con Ctrl+Z se puede suspender un proceso y dejarlo en espera en segundo plano.
 Vamos a hacer esto con la terminal remota.
 
@@ -93,3 +102,10 @@ Mejorar una shell sencilla remota a una tty completamente interactiva puede ser 
 Es muy util conocer estas estrategias, no para realizar este proceso en cada reversa que obtengamos, si no para aumentar nuestra bolsa de recursos que puedan ayudarnos.
 
 Practicamente cualquier persona que haya obtenido mas de 3 reversas en su vida conoce el truco de python y pty y lo util que puede llegar a ser cuando la shell es muy inestable. Conocer todos estos trucos nos hacen mucho más resilientes ante cualquier terminal, por muy inestable que sea.
+
+Espero que hayas podido aprender algo sobre la interactividad de la terminal.
+
+No dudes en hacer pull-request con cualquier cosa que te gustaria ver corregida.
+
+Un saludo.
+
